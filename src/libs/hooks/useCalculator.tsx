@@ -214,7 +214,16 @@ const useCalculator = () => {
 
   const makeResult = (el: PadKey) => {
     const result = equal();
+    setHistory(formatExpression(expression + " = "), result);
     addCalcStack({ result, ...el });
+  };
+
+  const setHistory = (expression: string, result: string) => {
+    const parsed = JSON.parse(localStorage.getItem("calhistory") || "[]");
+    localStorage.setItem(
+      "calhistory",
+      JSON.stringify([{ expression, result }, ...parsed])
+    );
   };
 
   const formatExpression = (raw: string) => {
