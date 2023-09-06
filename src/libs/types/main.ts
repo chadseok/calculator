@@ -8,3 +8,5 @@ export type CalcData = {
   type: string;
   command: null | string;
 };
+
+export type HistoryData = { expression: string; result: string };
